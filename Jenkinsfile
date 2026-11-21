@@ -49,7 +49,7 @@ pipeline {
         stage('Quality Gate') {
             steps {
                 script {
-                    def matcher = env.SCAN_OUTPUT =~ /QUALITY_SCORE=(\\d+)/
+                    def matcher = env.SCAN_OUTPUT =~ /QUALITY_SCORE=(\d+)/
 
                     if (matcher.find()) {
                         def qualityScore = matcher.group(1).toInteger()
