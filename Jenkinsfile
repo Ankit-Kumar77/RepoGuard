@@ -7,15 +7,26 @@ pipeline {
         stage('Environment Check') {
             steps {
                 echo 'Checking build environment...'
+
                 bat 'git --version'
+
                 bat '"C:\\Users\\WINDOWS\\AppData\\Local\\Programs\\Python\\Python313\\python.exe" --version'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                echo 'Installing project dependencies...'
+
+                bat '"C:\\Users\\WINDOWS\\AppData\\Local\\Programs\\Python\\Python313\\python.exe" -m pip install -r requirements.txt'
             }
         }
 
         stage('Tests') {
             steps {
                 echo 'Running RepoGuard tests...'
-                bat '"C:\\Project\\RepoGuard\\.venv\\Scripts\\python.exe" -m pytest tests -v'
+
+                bat '"C:\\Users\\WINDOWS\\AppData\\Local\\Programs\\Python\\Python313\\python.exe" -m pytest tests -v'
             }
         }
 
